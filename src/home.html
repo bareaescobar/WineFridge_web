@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light dark" />
+        <title>Wine Fridge</title>
+        <link rel="stylesheet" href="styles/main.scss" />
+    </head>
+    <body>
+        <div id="app" style="opacity: 0">
+            <header class="header">
+                <div class="container">
+                    <div class="left-group">
+                        <a href="/account" class="icon-btn grey-btn">
+                            <svg class="icon">
+                                <use href="#icon-user"></use>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="center-group">
+                        <button class="fridge-selector" data-target="fridge-selector-modal">
+                            <span>Lounge Fridge</span>
+                        </button>
+                    </div>
+                    <div class="right-group">
+                        <a href="/notifications" class="icon-btn grey-btn">
+                            <svg class="icon">
+                                <use href="#icon-bell"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="block-fridge" id="lounge-fridge">
+                    <div class="container block-head">
+                        <div class="fridge-capacity">
+                            <div class="capacity-head">
+                                <div class="capacity-status">
+                                    <span>{{content.capacity.current}}</span>/ {{content.capacity.total}} Wines
+                                </div>
+                                <button class="icon-btn grey-btn capacity-settings-btn" data-target="fridge-info-modal">
+                                    <svg class="icon">
+                                        <use href="#icon-settings"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="capacity-progress">
+                                <span class="green" style="width: 76%"></span>
+                            </div>
+                            <div class="capacity-left"><span>{{content.capacity.empty}}</span> Empty Spaces</div>
+                        </div>
+                        <div class="fridge-controls">
+                            <div class="fridge-control-group">
+                                <a href="{{content.controls.load.href}}" class="fridge-control-btn black">
+                                    <svg class="icon">
+                                        <use href="#icon-scan"></use>
+                                    </svg>
+                                </a>
+                                <div class="btn-label">{{content.controls.load.label}}</div>
+                            </div>
+                            <div class="fridge-control-group">
+                                <a href="{{content.controls.unload.href}}" class="fridge-control-btn black">
+                                    <svg class="icon">
+                                        <use href="#icon-unload"></use>
+                                    </svg>
+                                </a>
+                                <div class="btn-label">{{content.controls.unload.label}}</div>
+                            </div>
+                            <div class="fridge-control-group">
+                                <a href="{{content.controls.swap.href}}" class="fridge-control-btn grey">
+                                    <svg class="icon"><use href="#icon-sort"></use></svg>
+                                </a>
+                                <div class="btn-label">{{content.controls.swap.label}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container zones-list">
+                        <div class="zone red">
+                            <div class="zone-title">
+                                <button class="text-arrow-wide-btn" data-target="zone-params-modal">
+                                    <span class="text">{{content.zones.upper.title}}</span>
+                                </button>
+                            </div>
+                            <div class="zone-params">
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.type}}</div>
+                                    <div class="params-group-label">Type</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.wines}}</div>
+                                    <div class="params-group-label">Wines</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.temperature}}°C</div>
+                                    <div class="params-group-label">Temp</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.humidity}}%</div>
+                                    <div class="params-group-label">Humidity</div>
+                                </div>
+                            </div>
+                            <div class="zone-drawers">
+                                <a href="/drawer-red-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.upper.drawers[0].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.upper.drawers[0].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <a href="/drawer-red-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.upper.drawers[1].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.upper.drawers[1].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <a href="/drawer-red-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.upper.drawers[2].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.upper.drawers[2].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="zone white">
+                            <div class="zone-title">
+                                <button class="text-arrow-wide-btn" data-target="zone-params-modal">
+                                    <span class="text">{{content.zones.middle.title}}</span>
+                                </button>
+                            </div>
+                            <div class="zone-params">
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.type}}</div>
+                                    <div class="params-group-label">Type</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.wines}}</div>
+                                    <div class="params-group-label">Wines</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.temperature}}°C</div>
+                                    <div class="params-group-label">Temp</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.humidity}}%</div>
+                                    <div class="params-group-label">Humidity</div>
+                                </div>
+                            </div>
+                            <div class="zone-drawers">
+                                <a href="/drawer-white-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.middle.drawers[0].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.middle.drawers[0].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <a href="/drawer-white-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.middle.drawers[1].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.middle.drawers[1].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <a href="/drawer-white-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.middle.drawers[2].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.middle.drawers[2].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="zone rose">
+                            <div class="zone-title">
+                                <!-- Lower Zone -->
+                                <button class="text-arrow-wide-btn" data-target="zone-params-modal">
+                                    <span class="text">{{content.zones.middle.title}}</span>
+                                </button>
+                            </div>
+                            <div class="zone-params">
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.type}}</div>
+                                    <div class="params-group-label">Type</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.wines}}</div>
+                                    <div class="params-group-label">Wines</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.temperature}}°C</div>
+                                    <div class="params-group-label">Temp</div>
+                                </div>
+                                <div class="params-group">
+                                    <div class="params-group-value">{{content.zones.upper.humidity}}%</div>
+                                    <div class="params-group-label">Humidity</div>
+                                </div>
+                            </div>
+                            <div class="zone-drawers">
+                                <a href="/drawer-rose-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.lower.drawers[0].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.lower.drawers[0].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <a href="/drawer-rose-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.lower.drawers[1].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.lower.drawers[1].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <a href="/drawer-rose-wines" class="drawer-item">
+                                    <div class="drawer-item-info">
+                                        <div class="drawer-item-title">
+                                            {{content.zones.lower.drawers[2].drawerName}}
+                                        </div>
+                                        <div class="drawer-item-amount">
+                                            {{content.zones.lower.drawers[2].bottlesInDrawer}} Wines
+                                        </div>
+                                    </div>
+                                    <div class="drawer-item-capacity">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <br />
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <div class="modal from-bottom-modal" id="fridge-selector-modal">
+                <div class="modal-overlay"></div>
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon">
+                                    <use href="#icon-close"></use>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="center-group">
+                            <div class="modal-head-title">Change Fridge</div>
+                        </div>
+
+                        <div class="right-group">
+                            <a href="/connect-fridge" class="icon-btn grey-btn">
+                                <svg class="icon">
+                                    <use href="#icon-plus"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="fridges-list">
+                        <div class="fridge-item">
+                            <div class="fridge-item-thumb">
+                                <img src="img/fridge-thumb-1.png" alt="" />
+                            </div>
+                            <div class="fridge-item-info">
+                                <div class="fridge-item-title">Kitchen Fridge</div>
+                                <div class="fridge-item-model">Wine Enthusiast L26</div>
+                            </div>
+                        </div>
+                        <div class="fridge-item selected">
+                            <div class="fridge-item-thumb">
+                                <img src="img/fridge-thumb-2.png" alt="" />
+                            </div>
+                            <div class="fridge-item-info">
+                                <div class="fridge-item-title">Lounge Fridge</div>
+                                <div class="fridge-item-model">WineSmart 360 Pro</div>
+                            </div>
+                        </div>
+                        <div class="fridge-item">
+                            <div class="fridge-item-thumb">
+                                <img src="img/fridge-thumb-3.png" alt="" />
+                            </div>
+                            <div class="fridge-item-info">
+                                <div class="fridge-item-title">Cellar Fridge</div>
+                                <div class="fridge-item-model">Winobox 500</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal rtl-modal" id="fridge-info-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon">
+                                    <use href="#icon-arrow-left"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="right-group">
+                            <button class="icon-btn black-btn controls-dropdown-toggler-btn">
+                                <svg class="icon">
+                                    <use href="#icon-dots-more"></use>
+                                </svg>
+                            </button>
+                            <div class="controls-dropdown">
+                                <button class="controls-dropdown-btn" data-target="fridge-rename-modal">
+                                    <span>Rename</span>
+                                    <svg class="icon">
+                                        <use href="#icon-pen-edit"></use>
+                                    </svg>
+                                </button>
+                                <button class="controls-dropdown-btn alert-btn" data-target="fridge-delete-modal">
+                                    <span>Delete</span>
+                                    <svg class="icon">
+                                        <use href="#icon-trash"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fridge">
+                        <div class="fridge-photo">
+                            <img src="img/fridge-1.png" alt="" />
+                        </div>
+                        <div class="fridge-title">Lounge Fridge</div>
+                        <div class="fridge-model">WineSmart 360 Pro</div>
+                        <div class="fridge-controls">
+                            <button class="fridge-control-btn" data-target="fridge-lighting-modal">
+                                <svg class="icon">
+                                    <use href="#icon-sun-light"></use>
+                                </svg>
+                                <span>Lighting</span>
+                            </button>
+                            <button class="fridge-control-btn" data-target="fridge-security-code-modal">
+                                <svg class="icon">
+                                    <use href="#icon-lock-open"></use>
+                                </svg>
+                                <span>Security Code</span>
+                            </button>
+                        </div>
+                        <div class="fridge-zones">
+                            <div class="fridge-zones-label">Zones</div>
+                            <div class="fridge-zones-list">
+                                <div class="fridge-zone" data-target="zone-params-modal">
+                                    <div class="fridge-zone-icon">
+                                        <svg class="icon">
+                                            <use href="#icon-zone-upper"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="fridge-zone-name">Upper Zone</div>
+                                    <div class="fridge-zone-type">Red Wine</div>
+                                </div>
+                                <div class="fridge-zone" data-target="zone-params-modal">
+                                    <div class="fridge-zone-icon">
+                                        <svg class="icon">
+                                            <use href="#icon-zone-middle"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="fridge-zone-name">Middle Zone</div>
+                                    <div class="fridge-zone-type">Manual</div>
+                                </div>
+                                <div class="fridge-zone" data-target="zone-params-modal">
+                                    <div class="fridge-zone-icon">
+                                        <svg class="icon">
+                                            <use href="#icon-zone-lower"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="fridge-zone-name">Lower Zone</div>
+                                    <div class="fridge-zone-type">Sparkling Wine</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal interaction-alert-modal" id="fridge-delete-modal">
+                <div class="modal-overlay"></div>
+                <div class="modal-body">
+                    <div class="modal-title">Delete “<span>Lounge Fridge</span>”</div>
+                    <div class="modal-subtitle">
+                        Are you sure you want <br />
+                        to delete ”<span>Lounge Fridge</span>”?
+                    </div>
+                    <div class="modal-controls">
+                        <button class="modal-close">Cancel</button>
+                        <a href="/connect-fridge" class="alert-btn">Yes, Delete</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal rtl-modal" id="fridge-rename-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon">
+                                    <use href="#icon-arrow-left"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="center-group">
+                            <div class="modal-head-title">Rename</div>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="input-wrapper">
+                            <label for="fridge-name" class="input-label"> Name </label>
+                            <input id="fridge-name" type="text" placeholder="Enter new name" value="Lounge Fridge" />
+                        </div>
+
+                        <button class="btn modal-close">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal rtl-modal" id="fridge-lighting-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon">
+                                    <use href="#icon-arrow-left"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="center-group">
+                            <div class="modal-head-title">Lighting</div>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="checkboxes">
+                            <div class="checkbox-wrapper">
+                                <div class="checkbox-text">Energy Saving Mode</div>
+                                <label class="switcher">
+                                    <input type="checkbox" name="" hidden />
+                                    <span class="checkbox-box"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox-wrapper">
+                                <div class="checkbox-text">Night Mode</div>
+                                <label class="switcher">
+                                    <input type="checkbox" name="" hidden checked />
+                                    <span class="checkbox-box"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="fridge-lighting-colors-group">
+                            <div class="group-title">Color Type</div>
+                            <div class="color-selectors">
+                                <label class="color-selector">
+                                    <input type="radio" name="lighting-color-type-1" hidden />
+                                    <span class="radio-thumb"></span>
+                                    <span class="radio-text"> Warm White </span>
+                                </label>
+                                <label class="color-selector">
+                                    <input type="radio" name="lighting-color-type-1" hidden checked />
+                                    <span class="radio-thumb"></span>
+                                    <span class="radio-text"> Cool White </span>
+                                </label>
+                                <label class="color-selector">
+                                    <input type="radio" name="lighting-color-type-1" hidden />
+                                    <span class="radio-thumb"></span>
+                                    <span class="radio-text"> Neutral White </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="linear-progress-group fridge-lighting-brightness-group">
+                            <div class="linear-progress-head">
+                                <div class="linear-progress-label">Brightness</div>
+                                <div class="linear-progress-value"><span>75</span>%</div>
+                            </div>
+
+                            <div class="linear-progress-range">
+                                <input type="range" name="" id="" min="0" max="100" step="1" value="75" />
+                                <div class="input-progress"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn modal-close">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal rtl-modal" id="fridge-security-code-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon">
+                                    <use href="#icon-arrow-left"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="center-group">
+                            <div class="modal-head-title">Security Code</div>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="checkboxes">
+                            <div class="checkbox-wrapper">
+                                <div class="checkbox-text">Enable Protection</div>
+                                <label class="switcher">
+                                    <input type="checkbox" name="" hidden checked />
+                                    <span class="checkbox-box"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="text-arrow-wide-btn" data-target="fridge-pincode-old-modal">
+                            <!-- <button class="text-arrow-wide-btn" data-target="fridge-pincode-success-modal"> -->
+                            <span class="text"> Change Code </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- fridge pincodes group -->
+            <div class="modal rtl-modal" id="fridge-pincode-old-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-title">Enter Current PIN Code</div>
+                    <div class="modal-subtitle">
+                        For security, please enter your current PIN code to confirm changes.
+                    </div>
+
+                    <div class="code-group">
+                        <div class="code-group-placeholder">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="code-group-dials">
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>4</button>
+                            <button>5</button>
+                            <button>6</button>
+                            <button>7</button>
+                            <button>8</button>
+                            <button>9</button>
+                            <button>0</button>
+                            <button class="reset-btn">
+                                <svg class="icon"><use href="#icon-close-small"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal rtl-modal" id="fridge-pincode-new-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-title">Create New PIN Code</div>
+                    <div class="modal-subtitle">Enter a new PIN code to lock your fridge.</div>
+
+                    <div class="code-group">
+                        <div class="code-group-placeholder">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="code-group-dials">
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>4</button>
+                            <button>5</button>
+                            <button>6</button>
+                            <button>7</button>
+                            <button>8</button>
+                            <button>9</button>
+                            <button>0</button>
+                            <button class="reset-btn">
+                                <svg class="icon"><use href="#icon-close-small"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal rtl-modal" id="fridge-pincode-confirm-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-title">Re-Enter New PIN Code</div>
+                    <div class="modal-subtitle">To confirm, please enter your new PIN code again.</div>
+
+                    <div class="code-group">
+                        <div class="code-group-placeholder">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="code-group-dials">
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>4</button>
+                            <button>5</button>
+                            <button>6</button>
+                            <button>7</button>
+                            <button>8</button>
+                            <button>9</button>
+                            <button>0</button>
+                            <button class="reset-btn">
+                                <svg class="icon"><use href="#icon-close-small"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal final-modal" id="fridge-pincode-success-modal">
+                <div class="modal-body">
+                    <div class="state-group success">
+                        <div class="state-group-icon">
+                            <svg><use href="#icon-check"></use></svg>
+                        </div>
+                        <div class="state-group-title">
+                            Passcode Successfully <br />
+                            Changed!
+                        </div>
+                    </div>
+                    <button class="btn all-modals-close-btn" data-target="fridge-security-code-modal">Go Back</button>
+                </div>
+            </div>
+            <!-- end fridge pincodes group -->
+
+            <div class="modal rtl-modal" id="zone-params-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <button class="icon-btn grey-btn modal-close">
+                                <svg class="icon">
+                                    <use href="#icon-arrow-left"></use>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="center-group">
+                            <div class="modal-head-title">Upper Zone</div>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="tabs-group">
+                            <div class="tab-switcher">
+                                <button class="active">Automatically</button>
+                                <button>Manually</button>
+                            </div>
+                            <div class="tabs">
+                                <div class="tab active">
+                                    <div class="tab-title">Select the Type of Wine You Want to Store</div>
+
+                                    <div class="wide-text-radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="zone-wine-type" hidden checked />
+                                            <span class="radio-box"></span>
+                                            <span class="radio-text">
+                                                <span class="radio-title"> Red Wine </span>
+                                                <span class="radio-subtitle"> 16°C, 65% Humidity </span>
+                                            </span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="zone-wine-type" hidden />
+                                            <span class="radio-box"></span>
+                                            <span class="radio-text">
+                                                <span class="radio-title"> White Wine </span>
+                                                <span class="radio-subtitle"> 15°C, 75% Humidity </span>
+                                            </span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="zone-wine-type" hidden />
+                                            <span class="radio-box"></span>
+                                            <span class="radio-text">
+                                                <span class="radio-title"> Sparkling Wine </span>
+                                                <span class="radio-subtitle"> 18°C, 50% Humidity </span>
+                                            </span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="zone-wine-type" hidden />
+                                            <span class="radio-box"></span>
+                                            <span class="radio-text">
+                                                <span class="radio-title"> Dessert Wine </span>
+                                                <span class="radio-subtitle"> 17°C, 60% Humidity </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="tab">
+                                    <div class="tab-title">Set Your Temperature and Humidity</div>
+
+                                    <div class="wheel-progress-group zone-temperature-group">
+                                        <div class="wheel-progress-head">
+                                            <div class="wheel-progress-label">Temperature</div>
+                                            <div class="wheel-progress-value"><span>17</span>°</div>
+                                        </div>
+
+                                        <div class="wheel-progress-range">
+                                            <input type="number" hidden class="wheel-progress-input" />
+                                            <div class="swiper-container">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">12</div>
+                                                    <div class="swiper-slide">13</div>
+                                                    <div class="swiper-slide">14</div>
+                                                    <div class="swiper-slide">15</div>
+                                                    <div class="swiper-slide">16</div>
+                                                    <div class="swiper-slide">17</div>
+                                                    <div class="swiper-slide">18</div>
+                                                    <div class="swiper-slide">19</div>
+                                                    <div class="swiper-slide">20</div>
+                                                    <div class="swiper-slide">21</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="linear-progress-group zone-humidity-group">
+                                        <div class="linear-progress-head">
+                                            <div class="linear-progress-label">Humidity</div>
+                                            <div class="linear-progress-value"><span>68</span>%</div>
+                                        </div>
+
+                                        <div class="linear-progress-range">
+                                            <input type="range" name="" id="" min="0" max="100" step="1" value="68" />
+                                            <div class="input-progress"></div>
+                                        </div>
+                                    </div>
+
+                                    <button class="text-arrow-wide-btn" data-target="temperature-guide-modal">
+                                        <span class="circle grey">
+                                            <svg class="icon">
+                                                <use href="#icon-guide-book"></use>
+                                            </svg>
+                                        </span>
+                                        <span class="text"> Guide of Wine Temp &&nbsp;Humidity </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn modal-close">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <include src="src/partials/temperature-guide-modal.html"></include>
+
+            <include src="src/partials/sprite.html"></include>
+        </div>
+
+        <script type="module" src="js/main.js"></script>
+        <script type="module" src="js/home.js"></script>
+    </body>
+</html>

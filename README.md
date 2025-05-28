@@ -109,4 +109,3 @@ The application is built using Vite and can be deployed to any static hosting se
 | red-wines | Red wine inventory |
 | white-wines | White wine inventory |
 | rose-wines | Rosé wine inventory |
-=======

@@ -1,0 +1,52 @@
+.wifi-list {
+    margin-top: 40px;
+    display: grid;
+    gap: 24px;
+}
+.wifi-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#connect-fridges-list-modal {
+    .fridges-list {
+        margin-top: 40px;
+    }
+    .fridge-item {
+        &::after {
+            content: none;
+        }
+    }
+}
+
+#connect-fridge-search-modal {
+    figure {
+        margin-top: 40px;
+        width: 100%;
+        height: 424px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        svg {
+            position: absolute;
+            margin: auto;
+            animation: pulse 3s linear infinite;
+            animation-delay: 0.5s;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+        25% {
+            opacity: 0.2;
+        }
+        75% {
+            opacity: 1;
+        }
+    }
+}
