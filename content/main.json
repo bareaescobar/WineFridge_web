@@ -1,33 +1,58 @@
 {
+    "fridges": [
+        {
+            "fridgeName": "Kitchen Fridge",
+            "fridgeBrand": "Wine Enthusiast L26",
+            "fridgeImg": "img/fridge-thumb-1.png",
+            "selected": false
+        },
+        {
+            "fridgeName": "Lounge Fridge",
+            "fridgeBrand": "WineSmart 360 Pro",
+            "fridgeImg": "img/fridge-thumb-2.png",
+            "selected": true
+        },
+        {
+            "fridgeName": "Cellar Fridge",
+            "fridgeBrand": "Winobox 500",
+            "fridgeImg": "img/fridge-thumb-3.png",
+            "selected": false
+        }
+    ],
     "fridgeId": "wine_fridge_01",
-    "fridgeName": "Smart Wine Fridge",
+    "fridgeName": "Lounge Fridge",
     "lastUpdate": "2025-05-21T10:15:30",
     "capacity": {
         "total": 100,
         "current": 76,
         "empty": 24
     },
-    "controls": {
-        "load": {
+    "controls": [
+        {
             "icon": "scan",
             "label": "Load",
-            "href": "/load-bottle"
+            "href": "/load-bottle",
+            "bg": "black"
         },
-        "unload": {
+        {
             "icon": "unload",
             "label": "Unload",
-            "href": "/unload-bottle"
+            "href": "/unload-bottle",
+            "bg": "black"
         },
-        "swap": {
+        {
             "icon": "sort",
             "label": "Swap",
-            "href": "/swap-bottle"
+            "href": "/swap-bottle",
+            "bg": "grey"
         }
-    },
-    "zones": {
-        "upper": {
+    ],
+    "zones": [
+        {
             "title": "Upper Zone",
-            "type": "Red",
+            "zoneType": "upper",
+            "type": "red",
+            "typeLabel": "Red",
             "temperature": 16,
             "humidity": 65,
             "wines": 21,
@@ -358,9 +383,11 @@
                 }
             ]
         },
-        "middle": {
+        {
             "title": "Middle Zone",
-            "type": "White",
+            "zoneType": "middle",
+            "type": "white",
+            "typeLabel": "White",
             "temperature": 16,
             "humidity": 65,
             "wines": 18,
@@ -388,9 +415,11 @@
                 }
             ]
         },
-        "lower": {
+        {
             "title": "Lower Zone",
-            "type": "Roze",
+            "zoneType": "lower",
+            "type": "roze",
+            "typeLabel": "Roze",
             "temperature": 16,
             "humidity": 65,
             "wines": 18,
@@ -418,7 +447,7 @@
                 }
             ]
         }
-    },
+    ],
     "sensors": {
         "temperature": 14.5,
         "humidity": 65,

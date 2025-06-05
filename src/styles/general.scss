@@ -19,8 +19,6 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: light-dark($text-color-lightmode, $text-color-darkmode);
-    background-color: light-dark($body-bg-lightmode, $body-bg-darkmode);
 
     @include tablet {
         font-size: 18px;
@@ -83,6 +81,8 @@ input {
     min-height: 100vh;
     position: relative;
     opacity: 0;
+    background-color: light-dark($body-bg-lightmode, $body-bg-darkmode);
+    color: light-dark($text-color-lightmode, $text-color-darkmode);
     animation: showApp $duration linear forwards;
     animation-delay: $duration;
 

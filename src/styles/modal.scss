@@ -232,12 +232,10 @@
         justify-content: space-between;
         width: 100%;
         position: relative;
-        padding-bottom: 20px;
-        min-height: 44px; // 24 header + 20 padding
+        min-height: 24px; //svg height
 
         @include tablet {
-            padding-bottom: 32px;
-            min-height: 64px; // 32 header + 32 padding
+            min-height: 32px; // svg height
         }
 
         &:has(.left-group + .center-group) {
@@ -261,6 +259,19 @@
             }
             &:last-child {
                 grid-column: 3;
+            }
+        }
+
+        + .modal-title {
+            margin-top: 16px;
+            @include tablet {
+                margin-top: 24px;
+            }
+        }
+        + .modal-step-progress {
+            margin-top: 20px;
+            @include tablet {
+                margin-top: 24px;
             }
         }
     }
@@ -818,18 +829,6 @@
     }
 }
 
-#take-bottle-success-modal {
-    .modal-title {
-        margin-top: 16px;
-    }
-}
-
-#swap-bottles-modal {
-    .modal-title {
-        margin-top: 16px;
-    }
-}
-
 .swap-group {
     margin-top: 24px;
     display: flex;
@@ -909,6 +908,8 @@
 }
 
 .bottle-form {
+    padding-top: 24px;
+
     .group-title {
         font-weight: 500;
         margin-top: 32px;
@@ -1115,6 +1116,12 @@
 }
 
 #unauthorized-unload-modal {
+    .modal-head {
+        + .modal-title {
+            margin-top: 32px;
+        }
+    }
+
     .modal-title {
         transition: $duration;
         opacity: 0;
