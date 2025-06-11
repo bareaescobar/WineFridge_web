@@ -109,3 +109,164 @@ The application is built using Vite and can be deployed to any static hosting se
 | red-wines | Red wine inventory |
 | white-wines | White wine inventory |
 | rose-wines | Rosé wine inventory |
+
+# Mosquitto MQTT broker (TCP + WebSocket)
+Managing comunication (pub/sub) between Rasbery PI, web, ESP32
+
+## Installing Mosquitto via Homebrew (macOS)
+```bash
+brew install mosquitto
+brew services start mosquitto
+```
+By default, the broker only listens on localhost. You need to manually create a config file.
+
+### Creating the Configuration File
+> The broker should have WebSocket setup in configuration file.
+
+Create a mosquitto.conf file, for example: ./mosquitto/mosquitto.conf
+
+Add these lines to the file:
+
+```txt
+listener 1883
+protocol mqtt
+
+listener 9001
+protocol websockets
+
+allow_anonymous true
+```
+
+### Starting Mosquitto with This Config
+
+```bash
+mosquitto -c ./mosquitto/mosquitto.conf -v
+```
+
+The -v parameter allows to see the logs.
+
+# Features (FRIDGE ONLY)
+## 3. Bottle Loading (Web + MQTT)
+This module implements the complete cycle of adding a wine bottle to the fridge:  
+from barcode scanning to physical bottle placement in the drawer.
+
+## MQTT Topics
+
+| Name      | Topic                       | Direction |
+| --------- | --------------------------- | --------- |
+| RPI → Web | `winefridge/system/status`  | subscribe |
+
+## Step-by-Step Instructions
+### 1. Bottle Scanning
+
+- Person is scanning the **barcode** of the **bottle**.
+- Based on **topic** subscription recieving event with data:
+```
+{
+  "barcode": "8410415520628" 
+}
+``` 
+- Search by barcode in local collection: `wineCatalog.json`
+
+- If found, shown page with wine data:
+<img width="361" alt="image" src="https://github.com/user-attachments/assets/bd55d052-3e71-4765-a590-15d157199b1a" />
+
+- If not found, shown page with 'Not found' error:
+<img width="353" alt="image" src="https://github.com/user-attachments/assets/5dea3ea7-8840-446b-99ab-3dd7014cb649" />
+
+### 2. Loading Confirmation
+
+- User clicks **"Confirm & Load Bottle"**
+- MQTT command `start_load` is sent:
+#### Web → RPI:
+```json
+{
+    "timestamp": "2025-06-10T12:00:00Z",
+    "source": "web_client",
+    "target": "rpi_server",
+    "message_type": "command",
+    "payload": {
+        "action": "start_load",
+        "barcode": "8410415520628",
+        "bottle_info": {
+            "name": "Señorío de los Llanos",
+            "type": "Reserva",
+            "region": "Valdepeñas",
+            "vintage": "2018"
+        }
+    }
+}
+```
+
+### 3. Receiving Response from RPI
+Expected that bottle loaded at a specific position.
+#### RPI → Web
+#### [TEST MODE] Bottle loading emulation command: 
+```bash
+mosquitto_pub -h localhost -p 1883 -t 'winefridge/system/status' -m '{
+  "action": "expect_bottle",
+  "position": 3,
+  "barcode": "8410415520628",
+  "bottle_info": {
+    "name": "Señorío de los Llanos",
+    "type": "Reserva",
+    "region": "Valdepeñas",
+    "vintage": "2018"
+  },
+  "timeout_ms": 30000,
+  "timestamp": "2025-06-10T12:00:05Z"
+}'
+```
+- As a result the next page is shown:
+<img width="260" alt="image" src="https://github.com/user-attachments/assets/057b5e93-4b3a-42d4-b4cf-621673a8c1c8" />
+
+### 4. Waiting for Drawer Events
+After bottle placement, the system can receive several possible events:
+
+#### [TEST MODE] Successful Placement emulation command:
+```bash
+mosquitto_pub -h localhost -p 1883 -t 'winefridge/system/status' -m '{
+  "event": "bottle_placed",
+  "drawer_id": "drawer_1",
+  "position": 3,
+  "barcode": "8410415520628",
+  "weight": 1120.5,
+  "timestamp": "2025-06-10T12:00:15Z",
+  "success": true
+}'
+```
+
+- The page is shown:
+<img width="251" alt="image" src="https://github.com/user-attachments/assets/31315586-b9db-4126-9548-ae53366a8d0f" />
+
+#### [TEST MODE] Timeout emulation command:
+```bash
+mosquitto_pub -h localhost -p 1883 -t 'winefridge/system/status' -m '{
+  "error_type": "bottle_placement_timeout",
+  "drawer_id": "drawer_1",
+  "position": 3,
+  "expected_barcode": "8410415520628",
+  "message": "Bottle placement timeout after 30 seconds",
+  "timestamp": "2025-06-10T12:00:35Z"
+}'
+```
+
+- The page is shown with Timeout error:
+<img width="255" alt="image" src="https://github.com/user-attachments/assets/cad9e7b0-c526-4caa-86ef-d3afa2daaec8" />
+
+#### [TEST MODE] Bottle in Wrong Position emulation command:
+```bash
+mosquitto_pub -h localhost -p 1883 -t 'winefridge/system/status' -m '{
+  "error_type": "bottle_placement_wrong_position",
+  "drawer_id": "drawer_1",
+  "expected_position": 3,
+  "actual_position": 5,
+  "expected_barcode": "8410415520628",
+  "actual_barcode": "8410415520628",
+  "message": "Bottle was placed in the wrong position",
+  "timestamp": "2025-06-10T12:00:20Z"
+}'
+```
+
+- The page is shown:
+<img width="255" alt="image" src="https://github.com/user-attachments/assets/e1bb3fd1-540d-42b9-9004-1000b5144d40" />
