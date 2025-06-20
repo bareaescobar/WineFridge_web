@@ -98,7 +98,7 @@ The application is built using Vite and can be deployed to any static hosting se
 | forgot-password | Password reset functionality |
 | connect-fridge | Initial fridge connection setup |
 | setup-fridge | Fridge configuration |
-| home | Main dashboard |
+| index | Main dashboard |
 | account | User profile management |
 | notifications | Notification center |
 | load-bottle | Add new wines |
@@ -109,6 +109,7 @@ The application is built using Vite and can be deployed to any static hosting se
 | red-wines | Red wine inventory |
 | white-wines | White wine inventory |
 | rose-wines | Rosé wine inventory |
+| routes | All routes |
 
 # Mosquitto MQTT broker (TCP + WebSocket)
 Managing comunication (pub/sub) between Rasbery PI, web, ESP32

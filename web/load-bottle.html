@@ -10,11 +10,11 @@
     </head>
     <body>
         <div id="app" style="opacity: 0">
-            <div class="modal rtl-modal active" id="load-bottle-welcome-modal">
+            <!-- <div class="modal rtl-modal active" id="load-bottle-welcome-modal">
                 <div class="modal-body">
                     <div class="modal-head">
                         <div class="left-group">
-                            <a href="/home" class="icon-btn">
+                            <a href="/" class="icon-btn">
                                 <svg class="icon">
                                     <use href="#icon-close"></use>
                                 </svg>
@@ -31,6 +31,54 @@
                     </div>
 
                     <button class="btn white-btn">Finish</button>
+
+                    <div class="processing">
+                        <svg
+                            width="100"
+                            height="100"
+                            viewBox="0 0 100 100"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M50 2C39.6011 2 29.4833 5.37708 21.1692 11.6231C12.855 17.8692 6.79417 26.6463 3.89849 36.634C1.00281 46.6216 1.42895 57.2795 5.1128 67.0041C8.79666 76.7287 15.539 84.9939 24.3252 90.5562C33.1115 96.1185 43.4666 98.677 53.8323 97.8468C64.1981 97.0165 74.0139 92.8424 81.8028 85.9525C89.5917 79.0626 94.9325 69.8296 97.0215 59.6426C99.1105 49.4557 97.8348 38.8658 93.3863 29.4664"
+                                stroke="currentColor"
+                                stroke-width="4"
+                            />
+                        </svg>
+                        <span> Please wait... </span>
+                    </div>
+                </div>
+            </div> -->
+            <div class="modal rtl-modal active" id="load-bottle-welcome-modal">
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <div class="left-group">
+                            <a href="/home" class="icon-btn">
+                                <svg class="icon">
+                                    <use href="#icon-close"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="modal-title text-center">
+                        Scan the Barcode <br />
+                        On the Bottle to Load
+                    </div>
+                    <div class="modal-subtitle text-center">
+                        Hold the bottle near the scanner on the fridge <br />
+                        and wait for it to be recognized.
+                    </div>
+
+                    <div class="barcode">
+                        <img src="img/barcode.svg" alt="" />
+                    </div>
+
+                    <div class="barcode-annotation">
+                        After scanning, the fridge will highlight the spot <br />
+                        where the bottle should be placed.
+                    </div>
 
                     <div class="processing">
                         <svg
@@ -357,7 +405,7 @@ This exquisite white wine offers a crisp and refreshing experience with a smooth
                         <button class="btn white-btn modal-close" data-target="load-bottle-welcome-modal">
                             Scan More
                         </button>
-                        <a href="/home" class="btn">Done</a>
+                        <a href="/" class="btn">Done</a>
                     </div>
                 </div>
             </div>
@@ -388,7 +436,7 @@ This exquisite white wine offers a crisp and refreshing experience with a smooth
                 </div>
             </div>
 
-            <include src="src/partials/sprite.html"></include>
+            <include src="web/partials/sprite.html"></include>
         </div>
 
         <script type="module" src="js/main.js"></script>

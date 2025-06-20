@@ -922,51 +922,79 @@
 }
 
 #load-bottle-welcome-modal {
-    .modal-head {
-        z-index: 2;
-        color: #fff;
+    // .modal-head {
+    //     z-index: 2;
+    //     color: #fff;
 
-        &-title {
-            transition: $duration;
-        }
+    //     &-title {
+    //         transition: $duration;
+    //     }
+    // }
+
+    .icon-btn {
+        color: light-dark($grey-lightmode, $grey-darkmode);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid light-dark($grey-border-lightmode, $grey-border-darkmode);
     }
 
-    .scanner-dummy {
-        position: absolute;
-        z-index: 1;
-        inset: -24px;
-        img {
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: $duration;
+    // .scanner-dummy {
+    //     position: absolute;
+    //     z-index: 1;
+    //     inset: -24px;
+    //     img {
+    //         width: 100%;
+    //         position: absolute;
+    //         top: 0;
+    //         left: 0;
+    //         transition: $duration;
 
-            &.full {
-                opacity: 0;
-            }
+    //         &.full {
+    //             opacity: 0;
+    //         }
 
-            &.active {
-                opacity: 1;
-            }
-        }
+    //         &.active {
+    //             opacity: 1;
+    //         }
+    //     }
+    // }
+
+    // .btn {
+    //     position: fixed;
+    //     bottom: 24px;
+    //     left: 24px;
+    //     right: 24px;
+    //     width: auto;
+    //     z-index: 3;
+    //     opacity: 0;
+    //     pointer-events: none;
+    //     transition: $duration;
+
+    //     &.active {
+    //         opacity: 1;
+    //         pointer-events: auto;
+    //     }
+    // }
+
+    .barcode {
+        margin: 88px auto;
+        width: 100%;
+        max-width: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 24px;
+        min-height: 236px;
+        padding: 24px;
+        background-color: light-dark($grey-bg-lightmode, $grey-bg-darkmode);
     }
 
-    .btn {
-        position: fixed;
-        bottom: 24px;
-        left: 24px;
-        right: 24px;
-        width: auto;
-        z-index: 3;
-        opacity: 0;
-        pointer-events: none;
-        transition: $duration;
-
-        &.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+    .barcode-annotation {
+        @extend .modal-subtitle, .text-center;
     }
 
     .processing {
