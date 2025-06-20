@@ -1,14 +1,28 @@
 {
-    "name": "wine-fridge-mobile-ui",
+    "name": "smart-wine-fridge",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
+    "description": "Smart wine fridge fullstack app",
+    "homepage": "https://github.com/andriyl/smart-wine-fridge_web#readme",
+    "bugs": {
+        "url": "https://github.com/andriyl/smart-wine-fridge_web/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andriyl/smart-wine-fridge_web.git"
+    },
+    "license": "ISC",
+    "author": "",
+    "main": "index.js",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "format:check": "npx prettier \"src/**/*.{js,json,scss,html}\" --check",
-        "format": "npx prettier \"src/**/*.{js,json,scss,html}\" --write",
+        "start:backend": "node backend/server.cjs",
+        "start:all": "npm run build && node backend/server.cjs",
+        "format:check": "npx prettier \"**/*.{js,json,scss,html}\" --check",
+        "format": "npx prettier \"**/*.{js,json,scss,html}\" --write",
         "prepare": "husky"
     },
     "lint-staged": {
@@ -16,14 +30,16 @@
     },
     "devDependencies": {
         "husky": "^9.1.7",
-        "lint-staged": "^16.0.0",
-        "prettier": "3.5.3",
-        "sass": "^1.81.0",
+        "lint-staged": "^16.1.2",
+        "prettier": "^3.5.3",
+        "sass": "^1.89.2",
         "vite": "^5.4.10",
         "vite-plugin-handlebars": "^2.0.0",
         "vite-plugin-include-html": "^1.0.0"
     },
     "dependencies": {
+        "@fastify/static": "^8.2.0",
+        "fastify": "^5.4.0",
         "swiper": "^11.2.8"
     }
 }

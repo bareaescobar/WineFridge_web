@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import fs from 'fs'
 import includeHtml from 'vite-plugin-include-html'
 import handlebars from 'vite-plugin-handlebars'
-import context from './content/main.json'
+import context from './db/inventory.json'
 
 function getHtmlEntryFiles(srcDir) {
     const entry = {}
@@ -24,8 +24,9 @@ function getHtmlEntryFiles(srcDir) {
     return entry
 }
 
+const src = 'web'
 export default defineConfig({
-    root: './src',
+    root: `./${src}`,
     base: './',
     plugins: [
         includeHtml(),
@@ -37,7 +38,7 @@ export default defineConfig({
         }),
     ],
     server: {
-        open: './src/index.html',
+        open: './index.html',
         host: true,
     },
     css: {
@@ -49,13 +50,13 @@ export default defineConfig({
         },
     },
     build: {
-        outDir: '../dist',
+        outDir: '../public',
         assetsDir: './',
         assetsInlineLimit: 4096,
         emptyOutDir: true,
         target: 'es2015',
         rollupOptions: {
-            input: getHtmlEntryFiles('src'),
+            input: getHtmlEntryFiles(src),
             output: {
                 manualChunks: undefined,
                 assetFileNames: ({ name }) => {

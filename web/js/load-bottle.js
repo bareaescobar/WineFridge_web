@@ -20,10 +20,11 @@ document.querySelectorAll('[data-target]').forEach((btn) => {
         target.classList.add('active')
 
         if (btn.dataset.target == 'load-bottle-welcome-modal') {
-            scanBottleScene()
+            // scanBottleMobileScene()
+            scanBottleFridgeScene()
         }
         if (btn.dataset.target == 'load-bottle-drawer-modal') {
-            resetBottleScene()
+            // resetBottleMobileScene()
 
             setTimeout(() => {
                 // dummy scan random show, delete after
@@ -39,43 +40,64 @@ document.querySelectorAll('[data-target]').forEach((btn) => {
     })
 })
 
-function scanBottleScene() {
-    setTimeout(() => scanImg.classList.add('active'), 2000)
-    setTimeout(() => (scanTitle.style.opacity = 1), 2500)
-    setTimeout(() => scanBtn.classList.add('active'), 3500)
+// function scanBottleMobileScene() {
+//     setTimeout(() => scanImg.classList.add('active'), 2000)
+//     setTimeout(() => (scanTitle.style.opacity = 1), 2500)
+//     setTimeout(() => scanBtn.classList.add('active'), 3500)
 
+//     scanBottleErrorModal.classList.remove('active')
+//     loadBottleInfoModal.classList.remove('active')
+
+//     if (!scanButtonHandlerAttached) {
+//         scanBtn.addEventListener('click', () => {
+//             scanCircle.classList.add('active')
+
+//             // dummy scan event
+//             setTimeout(() => {
+//                 if (Math.random() > 0.5) {
+//                     loadBottleInfoModal.classList.add('active')
+//                 } else {
+//                     scanBottleErrorModal.classList.add('active')
+//                 }
+//             }, 2000)
+
+//             setTimeout(() => {
+//                 resetBottleMobileScene()
+//             }, 3000)
+//         })
+
+//         scanButtonHandlerAttached = true
+//     }
+// }
+
+function scanBottleFridgeScene() {
     scanBottleErrorModal.classList.remove('active')
     loadBottleInfoModal.classList.remove('active')
 
-    if (!scanButtonHandlerAttached) {
-        scanBtn.addEventListener('click', () => {
-            scanCircle.classList.add('active')
+    setTimeout(() => scanCircle.classList.add('active'), 3000)
 
-            // dummy scan event
-            setTimeout(() => {
-                if (Math.random() > 0.5) {
-                    loadBottleInfoModal.classList.add('active')
-                } else {
-                    scanBottleErrorModal.classList.add('active')
-                }
-            }, 2000)
+    // dummy scan event
+    setTimeout(() => {
+        if (Math.random() > 0.5) {
+            loadBottleInfoModal.classList.add('active')
+        } else {
+            scanBottleErrorModal.classList.add('active')
+        }
+    }, 5000)
 
-            setTimeout(() => {
-                resetBottleScene()
-            }, 3000)
-        })
-
-        scanButtonHandlerAttached = true
-    }
+    setTimeout(() => {
+        scanCircle.classList.remove('active')
+    }, 5500)
 }
 
-function resetBottleScene() {
-    scanTitle.style.opacity = 0
-    scanImg.classList.remove('active')
-    scanBtn.classList.remove('active')
-    scanCircle.classList.remove('active')
-}
+// function resetBottleMobileScene() {
+//     scanTitle.style.opacity = 0
+//     scanImg.classList.remove('active')
+//     scanBtn.classList.remove('active')
+//     scanCircle.classList.remove('active')
+// }
 
 imgInputsHandler('.img-file-wrapper')
 favoriteHandler('.favorite-btn')
-scanBottleScene()
+// scanBottleMobileScene()
+scanBottleFridgeScene()

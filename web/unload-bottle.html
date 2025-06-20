@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <div class="modal-head">
                         <div class="left-group">
-                            <a href="/home" class="icon-btn grey-btn">
+                            <a href="/" class="icon-btn grey-btn">
                                 <svg class="icon">
                                     <use href="#icon-arrow-left"></use>
                                 </svg>
@@ -259,7 +259,21 @@
                     </div>
 
                     <div class="products-list">
-                        <div class="product-item" data-target="unload-bottle-info-modal">
+                        <template id="product-template">
+                            <div class="product-item" data-target="unload-bottle-info-modal">
+                                <div class="product-item-photo">
+                                    <img src="" alt="" />
+                                </div>
+                                <div class="product-item-info">
+                                    <div class="product-item-title"></div>
+                                    <div class="product-item-rating"></div>
+                                    <div class="product-item-volume"></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- <div class="product-item" data-target="unload-bottle-info-modal">
                             <div class="product-item-photo">
                                 <img src="img/product-1.png" alt="" />
                             </div>
@@ -318,8 +332,7 @@
                                 <div class="product-item-rating">4.7</div>
                                 <div class="product-item-volume">400ml</div>
                             </div>
-                        </div>
-                    </div>
+                        </div> -->
                 </div>
             </div>
             <div class="modal rtl-modal modal-with-banner" id="unload-bottle-info-modal">
@@ -536,12 +549,12 @@
 
                     <div class="btns">
                         <button class="btn white-btn" data-target="unload-bottle-welcome-modal">Take Wine More</button>
-                        <a href="/home" class="btn">Go Back</a>
+                        <a href="/" class="btn">Go Back</a>
                     </div>
                 </div>
             </div>
 
-            <include src="src/partials/sprite.html"></include>
+            <include src="web/partials/sprite.html"></include>
         </div>
 
         <script type="module" src="js/main.js"></script>

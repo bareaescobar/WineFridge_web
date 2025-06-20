@@ -23,7 +23,7 @@
     "fridgeName": "Lounge Fridge",
     "lastUpdate": "2025-05-21T10:15:30",
     "capacity": {
-        "total": 100,
+        "total": 81,
         "current": 76,
         "empty": 24
     },
@@ -59,7 +59,7 @@
             "drawers": [
                 {
                     "drawerId": "upper_drawer_1",
-                    "drawerName": "Premium Reds",
+                    "drawerName": "1 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 8,
                     "href": "/drawer-red-wines",
@@ -167,7 +167,7 @@
                 },
                 {
                     "drawerId": "upper_drawer_2",
-                    "drawerName": "Whites & Rosés",
+                    "drawerName": "2 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 6,
                     "bottles": [
@@ -275,7 +275,7 @@
                 },
                 {
                     "drawerId": "upper_drawer_3",
-                    "drawerName": "Special Collection",
+                    "drawerName": "3 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 3,
                     "bottles": [
@@ -394,21 +394,21 @@
             "drawers": [
                 {
                     "drawerId": "middle_drawer_1",
-                    "drawerName": "Premium Reds",
+                    "drawerName": "4 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 8,
                     "href": "/drawer-white-wines"
                 },
                 {
                     "drawerId": "middle_drawer_2",
-                    "drawerName": "Premium Reds",
+                    "drawerName": "5 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 6,
                     "href": "/drawer-white-wines"
                 },
                 {
                     "drawerId": "middle_drawer_3",
-                    "drawerName": "Premium Reds",
+                    "drawerName": "6 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 7,
                     "href": "/drawer-white-wines"
@@ -426,21 +426,21 @@
             "drawers": [
                 {
                     "drawerId": "lower_drawer_1",
-                    "drawerName": "Premium Reds",
+                    "drawerName": "7 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 8,
                     "href": "/drawer-rose-wines"
                 },
                 {
                     "drawerId": "lower_drawer_2",
-                    "drawerName": "Premium Reds",
+                    "drawerName": " 8 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 6,
                     "href": "/drawer-rose-wines"
                 },
                 {
                     "drawerId": "lower_drawer_3",
-                    "drawerName": "Premium Reds",
+                    "drawerName": "9 Drawer",
                     "bottleCapacity": 9,
                     "bottlesInDrawer": 7,
                     "href": "/drawer-rose-wines"
